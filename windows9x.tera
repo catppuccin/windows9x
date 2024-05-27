@@ -1,0 +1,90 @@
+---
+whiskers:
+  version: "2.2.0"
+  filename: "themes/catppuccin.reg"
+accent: mauve
+---
+{%- macro hex(c) -%}
+{%- set d = c.hex | split(pat="") -%}
+{{d[1]}}{{d[2]}},{{d[3]}}{{d[4]}},{{d[5]}}{{d[6]}}
+{%- endmacro -%}
+REGEDIT4
+
+[HKEY_CURRENT_USER\Control Panel\Appearance\Schemes]
+{% for _, flavor in flavors -%}
+
+{#- the output of this template is quite impenetrable -#}
+{#- so, to aid with readability, we define a *lot* of stuff up front -#}
+{#- first; the colors we want to use, in the correct format: -#}
+{%- set c = flavor.colors -%}
+{%- set base = self::hex(c=c.base) -%}
+{%- set mantle = self::hex(c=c.mantle) -%}
+{%- set crust = self::hex(c=c.crust) -%}
+{%- set surface0 = self::hex(c=c.surface0) -%}
+{%- set surface1 = self::hex(c=c.surface1) -%}
+{%- set surface2 = self::hex(c=c.surface2) -%}
+{%- set text = self::hex(c=c.text) -%}
+{%- set subtext0 = self::hex(c=c.subtext0) -%}
+{%- set overlay0 = self::hex(c=c.overlay0) -%}
+{%- set overlay1 = self::hex(c=c.overlay1) -%}
+{%- set overlay2 = self::hex(c=c.overlay2) -%}
+{%- set accent = self::hex(c=c[accent]) -%}
+{#- the 'test' colors are good for highlighting an element if you're not sure what it is -#}
+{%- set test1 = 'ff,00,ff' -%}
+{%- set test2 = 'ff,7e,00' -%}
+{%- set test3 = '00,ff,00' -%}
+{%- set test4 = '00,00,ff' -%}
+{#- second; a mapping of those colors to the names windows 9x uses -#}
+{%- set desktop = crust %}
+{%- set active_titlebar_bg = if(cond=flavor.light, t=surface0, f=mantle) -%}
+{%- set active_titlebar_fg = text -%}
+{%- set inactive_titlebar_bg = if(cond=flavor.light, t=mantle, f=surface2) -%}
+{%- set inactive_titlebar_fg = subtext0 -%}
+{%- set menu_bg = base -%}
+{%- set menu_fg = text -%}
+{%- set window = base -%}
+{%- set message_box = text -%}
+{%- set active_window_border = surface2 -%}
+{%- set inactive_window_border = surface0 -%}
+{%- set selected_item_bg = accent -%}
+{%- set selected_item_fg = crust -%}
+{%- set window_3d_bg = base -%}
+{%- set window_3d_fg = text -%}
+{%- if flavor.light -%}
+  {%- set border_lit_outer = self::hex(c=c.base | add(lightness=5)) -%}
+  {%- set border_lit_inner = self::hex(c=c.base | add(lightness=3)) -%}
+  {%- set border_shaded_inner = surface0 -%}
+  {%- set border_shaded_outer = surface2 -%}
+{%- else -%}
+  {%- set border_lit_outer = surface2 -%}
+  {%- set border_lit_inner = surface0 -%}
+  {%- set border_shaded_inner = mantle -%}
+  {%- set border_shaded_outer = crust -%}
+{%- endif -%}
+{%- set tooltip_fg = text -%}
+{%- set tooltip_bg = surface0 -%}
+{%- set disabled = overlay2 -%}
+{%- set application_bg = surface0 -%}
+{%- set contrast_border = if(cond=flavor.light, t=overlay0, f=crust) -%}
+{#- finally we can generate the actual registry entry -#}
+"Catppuccin {{flavor.identifier | title}}"=hex:01,00,02,00,77,05,01,00,00,00,10,00,00,00,10,00,00,00,\
+  12,00,00,00,12,00,00,00,f5,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,bc,\
+  02,00,00,00,00,00,00,00,00,00,00,4d,53,20,53,61,6e,73,20,53,65,72,69,66,00,\
+  c0,2f,00,00,78,cd,00,00,60,cd,63,00,00,00,00,00,01,00,0f,00,00,00,0f,00,00,\
+  00,f8,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,bc,02,00,00,00,00,00,00,\
+  00,00,00,00,4d,53,20,53,61,6e,73,20,53,65,72,69,66,00,c0,2f,00,00,78,cd,00,\
+  00,60,cd,63,00,00,00,00,00,01,00,12,00,00,00,12,00,00,00,f5,ff,ff,ff,00,00,\
+  00,00,00,00,00,00,00,00,00,00,90,01,00,00,00,00,00,00,00,00,00,00,4d,53,20,\
+  53,61,6e,73,20,53,65,72,69,66,00,c0,2f,00,00,78,cd,00,00,60,cd,63,00,00,00,\
+  00,00,01,00,f5,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,90,01,00,00,00,\
+  00,00,00,00,00,00,00,4d,53,20,53,61,6e,73,20,53,65,72,69,66,00,c0,2f,00,00,\
+  78,cd,00,00,60,cd,63,00,00,00,00,00,01,00,f5,ff,ff,ff,00,00,00,00,00,00,00,\
+  00,00,00,00,00,90,01,00,00,00,00,00,00,00,00,00,00,4d,53,20,53,61,6e,73,20,\
+  53,65,72,69,66,00,c0,2f,00,00,78,cd,00,00,60,cd,63,00,00,00,00,00,01,00,f8,\
+  ff,00,00,00,00,00,00,90,01,00,00,00,00,00,00,00,00,4d,53,20,53,61,6e,73,20,\
+  53,65,72,69,66,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,7b,\
+  7b,aa,00,{{desktop}},00,{{active_titlebar_bg}},00,{{inactive_titlebar_bg}},00,{{menu_bg}},00,{{window}},00,{{contrast_border}},\
+  00,{{menu_fg}},00,{{message_box}},00,{{active_titlebar_fg}},00,{{active_window_border}},00,{{inactive_window_border}},00,{{application_bg}},\
+  00,{{selected_item_bg}},00,{{selected_item_fg}},00,{{window_3d_bg}},00,{{border_shaded_inner}},00,{{disabled}},00,{{window_3d_fg}},00,\
+  {{inactive_titlebar_fg}},00,{{border_lit_outer}},00,{{border_shaded_outer}},00,{{border_lit_inner}},00,{{tooltip_fg}},00,{{tooltip_bg}},00
+{% endfor %}
