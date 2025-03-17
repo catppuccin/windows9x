@@ -58,6 +58,10 @@ Reinstall the rebuilt registry entries as described in [Usage](#usage).
 
 For more extensive changes you can edit [windows9x.tera](./windows9x.tera) to change the theme variables and rebuild with `whiskers windows9x.tera`.
 
+## Windows XP Classic Theme
+
+See [the pinned issue](https://github.com/catppuccin/windows9x/issues/5) for Windows XP classic theme support.
+
 ## 💝 Thanks to
 
 - [pigeon](https://github.com/backwardspy)
