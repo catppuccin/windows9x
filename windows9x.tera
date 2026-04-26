@@ -1,8 +1,9 @@
 ---
 whiskers:
-  version: "2.2.0"
-  filename: "themes/catppuccin.reg"
-accent: mauve
+  version: "^2.9.0"
+  matrix:
+    - accent
+  filename: "themes/{{ accent }}/catppuccin.reg"
 ---
 {%- macro hex(c) -%}
 {%- set d = c.hex | split(pat="") -%}

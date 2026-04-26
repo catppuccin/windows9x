@@ -40,23 +40,10 @@
 > This theme is *only* compatible with Windows 95 and Windows 98.
 > **Do not apply the registry entries on any other version of Windows**.
 
-1. Download [`catppuccin.reg`](./themes/catppuccin.reg)
-2. Double click it to install the registry entries
-3. Navigate to Display Properties > Appearance and apply your chosen Catppuccin flavor
-
-## Customization
-
-This theme is built with [Whiskers](https://github.com/catppuccin/toolbox/tree/main/whiskers).
-
-If you wish to change the accent color used for selected items, you can override it as follows:
-
-```console
-whiskers windows9x.tera --overrides '{"accent": "green"}'
-```
-
-Reinstall the rebuilt registry entries as described in [Usage](#usage).
-
-For more extensive changes you can edit [windows9x.tera](./windows9x.tera) to change the theme variables and rebuild with `whiskers windows9x.tera`.
+1. Download the `catppuccin.reg` file for the accent of your choice from [themes](themes).
+2. Double click it to install the registry entries.
+3. Navigate to **Display Properties** > **Appearance** and apply your chosen Catppuccin flavor.
+4. Enjoy!
 
 ## Windows XP Classic Theme
 
