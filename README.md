@@ -40,7 +40,7 @@
 > This theme is *only* compatible with Windows 95 and Windows 98.
 > **Do not apply the registry entries on any other version of Windows**.
 
-1. Download the `catppuccin.reg` of your accent of choice from [themes](themes).
+1. Download the `catppuccin.reg` file for the accent of your choice from [themes](themes).
 2. Double click it to install the registry entries.
 3. Navigate to **Display Properties** > **Appearance** and apply your chosen Catppuccin flavor.
 4. Enjoy!
