@@ -46,7 +46,7 @@
 
 ## Customization
 
-This theme is built with [Whiskers](https://github.com/catppuccin/toolbox/tree/main/whiskers).
+This theme is built with [Whiskers](https://github.com/catppuccin/whiskers).
 
 If you wish to change the accent color used for selected items, you can override it as follows:
 
